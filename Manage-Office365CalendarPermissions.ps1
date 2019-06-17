@@ -23,7 +23,7 @@ Function Add-Office365CalendarPermissions {
     )
     Get-Mailbox $CalendarOwner | Foreach-Object {
         IF ($PSCmdlet.ShouldProcess($CalendarOwner)) {
-            Add-MailboxFolderPermission "$_`:\Calendar" -User $User -AccessRights $AccessRights
+            Add-MailboxFolderPermission "$_`:\Calendar" -User $User -AccessRights $AccessRights -Confirm
         }
     }
 }
