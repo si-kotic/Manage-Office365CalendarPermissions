@@ -44,3 +44,14 @@ Function Remove-Office365CalendarPermissions {
         }
     }
 }
+
+Function Get-Office365CalendarPermissions {
+    Param (
+        [Parameter(Mandatory)][ValidateScript({
+            Get-Mailbox $_
+        })][String]$CalendarOwner
+    )
+    Get-Mailbox $CalendarOwner | Foreach-Object {
+        Get-MailboxFolderPermission "$_`:\Calendar"
+    }
+}
