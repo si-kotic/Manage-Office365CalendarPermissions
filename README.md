@@ -87,7 +87,7 @@ Mandatory | True
 Remove-Office365CalendarPermissions -CalendarOwner "Big Boss Man" -User "Personal Assistant"
 ```
 #### Examples
-##### Example 1: Remove "Personal Assistan's" permissions over "Big Boss Man's" calendar.
+##### Example 1: Remove "Personal Assistant's" permissions over "Big Boss Man's" calendar.
 ```
 C:\>Remove-Office365CalendarPermissions -CalendarOwner "Big Boss Man" -User "Personal Assistant"
 
