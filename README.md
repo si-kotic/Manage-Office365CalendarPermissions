@@ -95,6 +95,39 @@ Are you sure you want to perform this action?
 Removing mailbox folder permission on "Big Boss Man:\Calendar" for user "Personal Assistant".
 [Y] Yes  [A] Yes to All  [N] No  [L] No to All  [?] Help (default is "Y"): y
 ```
+
+```
+C:\>Get-Mailbox | Foreach-Object {
+    Get-Office365CalendarPermissions -CalendarOwner $_ | Where {$_.User.DisplayName -eq "Personal Assistant"} | Select Identity,FolderName,User,AccessRights,SharingPermissionFlags
+} | Foreach-Object {
+    Remove-Office365CalendarPermissions -CalendarOwner ($_.Identity).Split(":")[0] -User $_.User.DisplayName
+}
+
+Confirm
+Are you sure you want to perform this action?
+Removing mailbox folder permission on "Big Boss Man:\Calendar" for user "Personal Assistant".
+[Y] Yes  [A] Yes to All  [N] No  [L] No to All  [?] Help (default is "Y"): y
+
+Confirm
+Are you sure you want to perform this action?
+Removing mailbox folder permission on "Another User:\Calendar" for user "Personal Assistant".
+[Y] Yes  [A] Yes to All  [N] No  [L] No to All  [?] Help (default is "Y"): y
+
+Confirm
+Are you sure you want to perform this action?
+Removing mailbox folder permission on "Meeting Room 546:\Calendar" for user "Personal Assistant".
+[Y] Yes  [A] Yes to All  [N] No  [L] No to All  [?] Help (default is "Y"): y
+
+Confirm
+Are you sure you want to perform this action?
+Removing mailbox folder permission on "Meeting Room 544:\Calendar" for user "Personal Assistant".
+[Y] Yes  [A] Yes to All  [N] No  [L] No to All  [?] Help (default is "Y"): y
+
+Confirm
+Are you sure you want to perform this action?
+Removing mailbox folder permission on "Meetin Room 542:\Calendar" for user "Personal Assistant".
+[Y] Yes  [A] Yes to All  [N] No  [L] No to All  [?] Help (default is "Y"): y
+```
 ### Get-Office365CalendarPermissions
 The Get-Office365CalendarPermissions cmdlet allows you to view who has which permissions over a specific users Office 365 Calendar.
 #### Parameters
