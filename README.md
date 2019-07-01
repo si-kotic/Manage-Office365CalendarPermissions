@@ -86,7 +86,8 @@ Mandatory | True
 ```powershell
 Remove-Office365CalendarPermissions -CalendarOwner "Big Boss Man" -User "Personal Assistant"
 ```
-#### Example
+#### Examples
+##### Example 1: Remove "Personal Assistan's" permissions over "Big Boss Man's" calendar.
 ```
 C:\>Remove-Office365CalendarPermissions -CalendarOwner "Big Boss Man" -User "Personal Assistant"
 
@@ -95,7 +96,7 @@ Are you sure you want to perform this action?
 Removing mailbox folder permission on "Big Boss Man:\Calendar" for user "Personal Assistant".
 [Y] Yes  [A] Yes to All  [N] No  [L] No to All  [?] Help (default is "Y"): y
 ```
-
+##### Example 2: Remove "Personal Assistant's" permissions *all* calendar's.
 ```
 C:\>Get-Mailbox | Foreach-Object {
     Get-Office365CalendarPermissions -CalendarOwner $_ | Where {$_.User.DisplayName -eq "Personal Assistant"} | Select Identity,FolderName,User,AccessRights,SharingPermissionFlags
@@ -136,7 +137,8 @@ There are no parameters for this cmdlet.
 ```powershell
 Get-Office365CalendarPermissions -CalendarOwner "Big Boss Man"
 ```
-#### Example
+#### Examples
+##### Example 1: List *all* permissions over "Big Boss Man's" calendar.
 ```
 C:\>Get-Office365CalendarPermissions -CalendarOwner "Big Boss Man"
 FolderName           User                 AccessRights                              SharingPermissionFlags
@@ -144,7 +146,7 @@ Calendar             Default              {Reviewer}
 Calendar             Anonymous            {None}
 Calendar             Personal Assistant   {Editor}
 ```
-
+##### Example 2: List all calendar permissions granted to "Personal Assistant".
 ```
 C:\>Get-Mailbox | Foreach-Object {
     Get-Office365CalendarPermissions -CalendarOwner $_ | Where {$_.User.DisplayName -eq "Personal Assistant"} | Select Identity,FolderName,User,AccessRights,SharingPermissionFlags
