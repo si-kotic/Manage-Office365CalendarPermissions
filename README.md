@@ -111,3 +111,17 @@ Calendar             Default              {Reviewer}
 Calendar             Anonymous            {None}
 Calendar             Personal Assistant   {Editor}
 ```
+
+```
+C:\>Get-Mailbox | Foreach-Object {
+    Get-Office365CalendarPermissions -CalendarOwner $_ | Where {$_.User.DisplayName -eq "Personal Assistant"} | Select Identity,FolderName,User,AccessRights,SharingPermissionFlags
+} | Format-Table -AutoSize
+
+Identity                       FolderName User               AccessRights SharingPermissionFlags
+--------                       ---------- ----               ------------ ----------------------
+Big Boss Man:\Calendar         Calendar   Personal Assistant {Editor}
+Another User:\Calendar         Calendar   Personal Assistant {Editor}
+Meeting Room 546:\Calendar     Calendar   Personal Assistant {Editor}
+Meeting Room 544:\Calendar     Calendar   Personal Assistant {Editor}
+Meeting Room 542:\Calendar     Calendar   Personal Assistant {Editor}
+```
