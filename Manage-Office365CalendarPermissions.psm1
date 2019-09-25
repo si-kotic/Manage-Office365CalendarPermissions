@@ -19,11 +19,16 @@ Function Add-Office365CalendarPermissions {
             "Reviewer",
             "AvailabilityOnly",
             "LimitedDetails"
-        )][String]$AccessRights
+        )][String]$AccessRights,
+        [ValidateSet(
+            "None",
+            "Delegate",
+            "CanViewPrivateItems"
+        )]$SharingPermissionFlags = "None"
     )
     Get-Mailbox $CalendarOwner | Foreach-Object {
         IF ($PSCmdlet.ShouldProcess($CalendarOwner)) {
-            Add-MailboxFolderPermission "$_`:\Calendar" -User $User -AccessRights $AccessRights -Confirm
+            Add-MailboxFolderPermission "$_`:\Calendar" -User $User -AccessRights $AccessRights -SharingPermissionFlags $SharingPermissionFlags -Confirm
         }
     }
 }

@@ -33,7 +33,7 @@ Default value | None
 Accept pipeline input | False
 Accept wildcard characters | False
 Mandatory | True
-##### Access Rights
+##### AccessRights
 Specifies the permissions you wish to grant.  Accepts one of the following values: "Author", "Contributor", "Editor", "None", "NonEditingAuthor", "Owner", "PublishingEditor", "PublishingAuthor", "Reviewer", "AvailabilityOnly", "LimitedDetails".
 
 Argument | Value
@@ -44,13 +44,38 @@ Default value | None
 Accept pipeline input | False
 Accept wildcard characters | False
 Mandatory | True
+##### SharingPermissionFlags
+Specifies the sharing permission flags you wish to grant.  Accepts one of the following values: "None", "Delegate", "CanViewPrivateItems".
+The default value is None meaning that the delegate user does not receive notifications for this Calendar.
+The value Delegate means the delegate user receives notifications for this Calendar.
+CanViewPrivateItems will allow the delegate user to see private appointments for this Calendar.  In order to use it, you must also specify the Delegate value.  Multiple values are accepted.
+
+Argument | Value
+--- | ---
+Type | String
+Position | Named
+Default value | "None"
+Accept pipeline input | False
+Accept wildcard characters | False
+Mandatory | False
 #### Syntax
 ```powershell
 Add-Office365CalendarPermissions -CalendarOwner "Big Boss Man" -User "Personal Assistant" -AccessRights Editor
 ```
+```powershell
+Add-Office365CalendarPermissions -CalendarOwner "Big Boss Man" -User "Personal Assistant" -AccessRights Editor -SharingPermissionFlags Delegate,CanViewPrivateItems
+```
 #### Example
 ```
 C:\>Add-Office365CalendarPermissions -CalendarOwner "Big Boss Man" -User "Personal Assistant" -AccessRights Editor
+
+Confirm
+Are you sure you want to perform this action?
+Adding mailbox folder permission on "Big Boss Man:\Calendar" for user "Personal Assistant", access rights "'Editor'".
+[Y] Yes  [A] Yes to All  [N] No  [L] No to All  [?] Help (default is "Y"): y
+```
+```
+C:\>Add-Office365CalendarPermissions -CalendarOwner "Big Boss Man" -User "Personal Assistant" -AccessRights Editor -SharingPermissionFlags Delegate,CanViewPrivateItems
 
 Confirm
 Are you sure you want to perform this action?
